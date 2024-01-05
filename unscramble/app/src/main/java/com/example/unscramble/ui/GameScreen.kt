@@ -237,7 +237,11 @@ private fun FinalScoreDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onPlayAgain) {
+            TextButton(
+                onClick = {
+                    onPlayAgain()
+                }
+            ) {
                 Text(text = stringResource(R.string.play_again))
             }
         }
