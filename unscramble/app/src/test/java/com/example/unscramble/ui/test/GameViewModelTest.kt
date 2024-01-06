@@ -87,12 +87,11 @@ class GameViewModelTest {
     fun gameViewModel_WordSkipped_ScoreUnchangedAndWordCountIncreased() {
         var currentGameUiState = viewModel.uiState.value
         val correctPlayerWord = getUnscrambledWord(currentGameUiState.currentScrambledWord)
-
         viewModel.updateUserGuess(correctPlayerWord)
         viewModel.checkUserGuess()
+
         currentGameUiState = viewModel.uiState.value
         val lastWordCount = currentGameUiState.currentWordCount
-
         viewModel.skipWord()
         currentGameUiState = viewModel.uiState.value
         // Assert that score remains unchanged after word is skipped.

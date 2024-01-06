@@ -35,7 +35,6 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.MaterialTheme.shapes
@@ -79,7 +78,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GameLayout(
     modifier :Modifier = Modifier,
@@ -118,7 +116,11 @@ fun GameLayout(
                 singleLine = true,
                 shape = shapes.large,
                 modifier = Modifier.fillMaxWidth(),
-                colors = TextFieldDefaults.textFieldColors(containerColor = colorScheme.surface),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = colorScheme.surface,
+                    unfocusedContainerColor = colorScheme.surface,
+                    disabledContainerColor = colorScheme.surface,
+                ),
                 onValueChange = {},
                 label = { Text(stringResource(id = R.string.enter_your_word))},
                 isError = false,
@@ -208,7 +210,7 @@ private fun FinalScoreDialog(
     val activity = (LocalContext.current as Activity)
 
     AlertDialog(
-        onDismissRequest = { /*TODO*/ },
+        onDismissRequest = {  },
         title = { Text(text = stringResource(id = R.string.congratulations))},
         text = { Text(text = stringResource(id = R.string.you_scored,score))},
         modifier = modifier,
